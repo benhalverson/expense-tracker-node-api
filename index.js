@@ -6,7 +6,11 @@ dotenv.config({ path: './config/config.env' });
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.get('/', (req, res) => res.send('API works'));
+const transactions = require('./routes/transactions');
+
+app.use('/api/v1/transactions', transactions);
+
+
 app.listen(PORT, () => {
 	console.log(`Server running in ${process.env.NODE_ENV} listening on port ${PORT}`.yellow.bold);
 });
