@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
 const cors = require('cors');
+const helmet = require('helmet');
 const connectDB = require('./config/db');
 dotenv.config({ path: './config/config.env' });
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(helmet());
 
 if(process.env.NODE_ENV === 'development') {
 app.use(morgan('dev'));
